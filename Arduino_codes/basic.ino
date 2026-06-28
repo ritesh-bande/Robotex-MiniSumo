@@ -1,4 +1,12 @@
-
+// ============================================================
+//  Mini Sumo Robot — ESP32 + 4x VL53L0X (XSHUT method)
+//                   + TB6612FNG (SparkFun library)
+//                   + QTR-8A (QTRSensors library, 2 channels)
+//  Robotex Mini Sumo 2026 Rules Compliant
+//
+//  Pin configuration below is taken EXACTLY from the verified
+//  schematic trace. Do not change these without re-checking the
+//  actual board wiring.
 //
 //  HOW THE 4 ToF SENSORS SHARE ONE I2C BUS (XSHUT method):
 //  All 4 VL53L0X SDA/SCL pins are wired together to the SAME
@@ -175,16 +183,16 @@ void readAllSensors() {
   VL53L0X_RangingMeasurementData_t m;
 
   tofFront.rangingTest(&m, false);
-  distFront = (m.RangeStatus != 4) ? m.RangeMm : 9999;
+  distFront = (m.RangeStatus != 4) ? m.RangeMilliMeter : 9999;
 
   tofRight.rangingTest(&m, false);
-  distRight = (m.RangeStatus != 4) ? m.RangeMm : 9999;
+  distRight = (m.RangeStatus != 4) ? m.RangeMilliMeter : 9999;
 
   tofLeft.rangingTest(&m, false);
-  distLeft = (m.RangeStatus != 4) ? m.RangeMm : 9999;
+  distLeft = (m.RangeStatus != 4) ? m.RangeMilliMeter : 9999;
 
   tofBack.rangingTest(&m, false);
-  distBack = (m.RangeStatus != 4) ? m.RangeMm : 9999;
+  distBack = (m.RangeStatus != 4) ? m.RangeMilliMeter : 9999;
 }
 
 // ============================================================
